@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.Contracts</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.Contracts</AssemblyName>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.Shared</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.Shared</AssemblyName>
+  </PropertyGroup>
+
+</Project>

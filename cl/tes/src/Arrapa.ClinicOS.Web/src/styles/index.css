@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 dark:text-gray-100 bg-gray-50 dark:bg-gray-950 font-sans;
+    font-size: 14px;
+    line-height: 20px;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  /* Keyboard focus visible without polluting mouse users. */
+  :where(a, button, [role='button'], input, select, textarea, [tabindex]:not([tabindex='-1'])):focus-visible {
+    @apply outline-none;
+    box-shadow: 0 0 0 4px rgba(70, 95, 255, 0.18);
+    border-radius: inherit;
+  }
+
+  /* Typographic defaults set as plain CSS so they never depend on custom
+     Tailwind text-* utilities being available inside @apply. */
+  h1 {
+    @apply text-gray-900 dark:text-white font-semibold;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    @apply text-gray-900 dark:text-white font-semibold;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    @apply text-gray-900 dark:text-white font-semibold;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  table { border-collapse: separate; border-spacing: 0; }
+
+  input::placeholder, textarea::placeholder {
+    @apply text-gray-400;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reusable utility classes
+   -------------------------------------------------------------------------- */
+@layer components {
+  /* Muted caption/label used across the app. Font-size/line-height inline so
+     @apply doesn't have to resolve custom fontSize tokens. */
+  .u-label {
+    @apply uppercase text-gray-500 dark:text-gray-400 font-medium tracking-widest;
+    font-size: 11px;
+    line-height: 14px;
+  }
+  .u-label-sm {
+    @apply uppercase text-gray-400 dark:text-gray-500 font-medium tracking-wider;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .u-card {
+    @apply rounded-xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-theme-xs;
+  }
+  .u-card-flat {
+    @apply rounded-xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900;
+  }
+
+  .u-divider {
+    @apply border-t border-gray-100 dark:border-gray-800;
+  }
+
+  .u-link {
+    @apply text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 transition-colors;
+  }
+
+  .u-skeleton {
+    @apply relative overflow-hidden bg-gray-100 dark:bg-gray-800/60 rounded-md;
+  }
+  .u-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  .dark .u-skeleton::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.06),
+      transparent
+    );
+  }
+
+  .u-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.gray.300') transparent;
+  }
+  .u-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+  .u-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .u-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.gray.300');
+    border-radius: 999px;
+  }
+  .dark .u-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.gray.700');
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print styles — used by Invoice + Prescription pages. Elements marked with
+   `.u-no-print` are hidden on paper; anything wrapped in `.u-printable` is
+   promoted to the full page so the sidebar/header/toolbars don't waste ink.
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  .u-no-print,
+  nav,
+  aside,
+  header[data-role='app-header'],
+  [data-role='toast-viewport'],
+  [role='dialog'] > .u-no-print {
+    display: none !important;
+  }
+
+  .u-printable {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .u-printable * {
+    background: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+
+  .u-printable table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  .u-printable th,
+  .u-printable td {
+    border: 1px solid #d1d5db !important;
+    padding: 8px 10px !important;
+    color: #111827 !important;
+  }
+
+  .u-printable a {
+    color: #111827 !important;
+    text-decoration: none !important;
+  }
+
+  .u-page-break { page-break-before: always; }
+  .u-avoid-break { page-break-inside: avoid; }
+}

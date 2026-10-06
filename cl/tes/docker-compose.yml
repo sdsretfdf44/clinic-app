@@ -1,0 +1,56 @@
+name: arrapa-clinicos
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: arrapa-clinicos-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-ArrapaStrong!Passw0rd}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1'"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: src/Arrapa.ClinicOS.API/Dockerfile
+    container_name: arrapa-clinicos-api
+    depends_on:
+      sql:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__Default: "Server=sql,1433;Database=ArrapaClinicOS;User Id=sa;Password=${MSSQL_SA_PASSWORD:-ArrapaStrong!Passw0rd};TrustServerCertificate=True;Encrypt=True;MultipleActiveResultSets=True;"
+      Jwt__Issuer: "arrapa.clinicos.api"
+      Jwt__Audience: "arrapa.clinicos.web"
+      Jwt__SigningKey: "${JWT_SIGNING_KEY:-CHANGE_ME_TO_A_STRONG_SECRET_KEY_AT_LEAST_32_CHARS}"
+      Database__SeedOnStart: "true"
+    ports:
+      - "5103:8080"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: src/Arrapa.ClinicOS.Web
+      dockerfile: Dockerfile
+    container_name: arrapa-clinicos-web
+    depends_on:
+      - api
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  sql_data:
+    name: arrapa-clinicos-sql-data

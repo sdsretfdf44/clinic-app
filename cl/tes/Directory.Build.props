@@ -1,0 +1,26 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>CS1591</WarningsNotAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591;CA1707;CA1848;CA2007;CA1305;CA1716;CA1000;CA1024;CA1051;CA2227;CA1002;CA1819;CA1062;CA1054;CA1056;CA1034;CA1031;CA1064;CA1721;CA1852;CA1032;CA1063;CA1816;CA1826;CA1861;CA2201;CA2000;CA1508;CA1806;CA1810;CA5394;CA1720;CA1304;CA1310;CA1311;CA1725;CA1859;CA1860;CA1862;CA1863;CA1866;CA1867;CA1868;CA1310;CA1307;CA1002;CA1055;CA1308;CA2225;IDE0011</NoWarn>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>Recommended</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <Company>Arrapa Software</Company>
+    <Product>Arrapa ClinicOS</Product>
+    <Copyright>Copyright © Arrapa Software</Copyright>
+    <Authors>Arrapa Software</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>

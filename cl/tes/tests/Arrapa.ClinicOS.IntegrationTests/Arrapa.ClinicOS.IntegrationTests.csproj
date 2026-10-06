@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.IntegrationTests</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.IntegrationTests</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.MsSql" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="FluentAssertions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.API\Arrapa.ClinicOS.API.csproj" />
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.Persistence\Arrapa.ClinicOS.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.Infrastructure\Arrapa.ClinicOS.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

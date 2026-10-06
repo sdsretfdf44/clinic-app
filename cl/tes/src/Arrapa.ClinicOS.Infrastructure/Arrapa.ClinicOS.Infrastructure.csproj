@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.Infrastructure</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.Infrastructure</AssemblyName>
+    <!--
+      NU1902 is a transitive advisory on MailKit/MimeKit. The latest published versions still carry
+      the moderate-severity advisory; there is no fixed release. We accept this since MailKit is
+      the standard SMTP library on .NET and the alternative (System.Net.Mail.SmtpClient) is deprecated.
+      Re-evaluate whenever a new MailKit release ships.
+    -->
+    <NoWarn>$(NoWarn);NU1902</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" />
+    <PackageReference Include="BCrypt.Net-Next" />
+    <PackageReference Include="MailKit" />
+    <PackageReference Include="MimeKit" />
+    <PackageReference Include="Otp.NET" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Arrapa.ClinicOS.Application\Arrapa.ClinicOS.Application.csproj" />
+    <ProjectReference Include="..\Arrapa.ClinicOS.Domain\Arrapa.ClinicOS.Domain.csproj" />
+    <ProjectReference Include="..\Arrapa.ClinicOS.Shared\Arrapa.ClinicOS.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

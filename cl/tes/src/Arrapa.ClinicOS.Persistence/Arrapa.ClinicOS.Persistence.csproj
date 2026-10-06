@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.Persistence</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.Persistence</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
+    <PackageReference Include="MediatR" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Arrapa.ClinicOS.Application\Arrapa.ClinicOS.Application.csproj" />
+    <ProjectReference Include="..\Arrapa.ClinicOS.Domain\Arrapa.ClinicOS.Domain.csproj" />
+    <ProjectReference Include="..\Arrapa.ClinicOS.Shared\Arrapa.ClinicOS.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

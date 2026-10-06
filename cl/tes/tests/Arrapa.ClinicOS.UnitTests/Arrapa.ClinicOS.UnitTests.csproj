@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Arrapa.ClinicOS.UnitTests</RootNamespace>
+    <AssemblyName>Arrapa.ClinicOS.UnitTests</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="Bogus" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="FluentAssertions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.Application\Arrapa.ClinicOS.Application.csproj" />
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.Domain\Arrapa.ClinicOS.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Arrapa.ClinicOS.Shared\Arrapa.ClinicOS.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
